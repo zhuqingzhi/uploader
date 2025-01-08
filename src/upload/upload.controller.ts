@@ -9,6 +9,7 @@ import {
   Res,
   UploadedFile,
   UseInterceptors,
+  Get,
 } from '@nestjs/common';
 import { UploadService } from './upload.service';
 
@@ -31,5 +32,10 @@ export class UploadController {
     @Body() body: any,
   ) {
     return await this.uploadService.deploy(file, body.projectKey);
+  }
+
+  @Get('/dir/list')
+  getUploadDirList() {
+    return this.uploadService.getUploadDirList();
   }
 }

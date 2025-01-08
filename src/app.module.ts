@@ -10,7 +10,7 @@ import { FileManageEntity } from './upload/entity/FileVersionManage';
   imports: [
     UploadModule,
     ConfigModule.forRoot({
-      envFilePath: '.development.env',
+      envFilePath: 'src/config/.development.env',
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({

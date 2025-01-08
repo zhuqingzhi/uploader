@@ -39,4 +39,7 @@ export class UploadService {
       throw new BadRequestException(e.message);
     }
   }
+  async getUploadDirList() {
+    return [];
+  }
 }
