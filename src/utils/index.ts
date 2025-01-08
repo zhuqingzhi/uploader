@@ -29,12 +29,13 @@ export function zipDir(dir, filename) {
         if (filename.indexOf('.zip') > -1) return;
         zip.addLocalFile(path.resolve(dir, filename));
       });
-      const zipName = path.resolve(
-        dir,
-        filename + new Date().getTime() + '.zip',
-      );
+      const version = filename + '-' + new Date().getTime();
+      const zipName = path.resolve(dir, version + '.zip');
       zip.writeZip(zipName);
-      resolve(zipName);
+      resolve({
+        zipedFilename: zipName,
+        version,
+      });
     } else {
       throw new Error('文件夹不存在');
     }
