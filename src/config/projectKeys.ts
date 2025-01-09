@@ -1,4 +1,4 @@
 export default {
-  nanshan_middle: 'E:\\study\\nestjs_2024\\文件',
+  nanshan_middle: '/home/front/nanshan_middle',
   default: './uploads',
 };
