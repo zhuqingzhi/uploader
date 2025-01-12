@@ -7,6 +7,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { FileManageEntity } from './upload/entity/FileVersionManage';
 import { DirManage } from './dir-manage/entity/dirManage';
 import { DirManageModule } from './dir-manage/dir-manage.module';
+import { APP_FILTER, APP_INTERCEPTOR } from '@nestjs/core';
+import { ResponseInterceptor } from './common/interceptors/response.interceptor';
+import { ExceptionForamtter } from './common/exceptionFilters/exceptionFormatter.filter';
 
 @Module({
   imports: [
@@ -36,5 +39,15 @@ import { DirManageModule } from './dir-manage/dir-manage.module';
     DirManageModule,
   ],
   controllers: [AppController],
+  providers: [
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: ResponseInterceptor,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: ExceptionForamtter,
+    },
+  ],
 })
 export class AppModule {}

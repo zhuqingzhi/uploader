@@ -9,7 +9,6 @@ import {
 } from '@nestjs/common';
 import { DirManageService } from './dir-manage.service';
 import { CreateDirDto } from './dto/create.dto';
-import { EmptyPipe } from 'src/utils/pipes/validator.pipes';
 
 @Controller('dir-manage')
 export class DirManageController {
@@ -28,7 +27,7 @@ export class DirManageController {
     return this.dirManageService.create(body);
   }
   @Get('/delete/:id')
-  deleteRecord(@Param('id', new EmptyPipe()) id: string) {
+  deleteRecord(@Param('id') id: string) {
     console.log('======', id);
     return this.dirManageService.deleteDir(id);
   }
