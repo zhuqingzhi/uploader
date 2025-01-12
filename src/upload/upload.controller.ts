@@ -10,6 +10,8 @@ import {
   UploadedFile,
   UseInterceptors,
   Get,
+  Delete,
+  Param,
 } from '@nestjs/common';
 import { UploadService } from './upload.service';
 
@@ -37,5 +39,9 @@ export class UploadController {
   @Get('/dir/list')
   getUploadDirList() {
     return this.uploadService.getUploadDirList();
+  }
+  @Delete('/deploy/record/:id')
+  deleteDeployRecord(@Param('id') id: string) {
+    return this.uploadService.deleteDeployRecord(id);
   }
 }

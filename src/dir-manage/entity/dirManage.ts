@@ -1,6 +1,7 @@
 import {
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -26,4 +27,7 @@ export class DirManage {
 
   @UpdateDateColumn()
   updateTime: Date;
+
+  @DeleteDateColumn()
+  deleteTime: Date;
 }

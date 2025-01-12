@@ -4,6 +4,7 @@ import projectKeys from 'src/config/projectKeys';
 import { saveFile, zipDir, unzip, rmFile } from 'src/utils';
 import { FileManageEntity } from './entity/FileVersionManage';
 import { Repository } from 'typeorm';
+import dataSource from 'src/utils/dataSource';
 
 @Injectable()
 export class UploadService {
@@ -41,5 +42,13 @@ export class UploadService {
   }
   async getUploadDirList() {
     return [];
+  }
+  async deleteDeployRecord(id: string) {
+    try {
+      await dataSource.getRepository(FileManageEntity).softDelete(id);
+      return 'success';
+    } catch (e) {
+      throw new BadRequestException(e.message);
+    }
   }
 }

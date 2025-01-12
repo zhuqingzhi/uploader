@@ -5,12 +5,14 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as path from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { FileManageEntity } from './upload/entity/FileVersionManage';
+import { DirManage } from './dir-manage/entity/dirManage';
+import { DirManageModule } from './dir-manage/dir-manage.module';
 
 @Module({
   imports: [
     UploadModule,
     ConfigModule.forRoot({
-      envFilePath: 'src/config/.development.env',
+      envFilePath: '.development.env',
       isGlobal: true,
     }),
     TypeOrmModule.forRootAsync({
@@ -25,12 +27,13 @@ import { FileManageEntity } from './upload/entity/FileVersionManage';
           password: configService.get('MYSQL_PASSWORD'),
           connectorPackage: 'mysql2',
           poolSize: 10,
-          entities: [FileManageEntity],
+          entities: [FileManageEntity, DirManage],
           logging: true,
           synchronize: true,
         };
       },
     }),
+    DirManageModule,
   ],
   controllers: [AppController],
 })

@@ -1,6 +1,7 @@
 import {
   Column,
   CreateDateColumn,
+  DeleteDateColumn,
   Entity,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -31,4 +32,7 @@ export class FileManageEntity {
 
   @CreateDateColumn()
   createTime: Date;
+
+  @DeleteDateColumn()
+  deleteDate: Date;
 }
